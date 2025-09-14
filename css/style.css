@@ -179,10 +179,12 @@ p {
 }
 
 .logo-icon {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: var(--primary);
-    color: var(--bg-primary);
+    width: 5rem;
+    max-width: auto;
+    height: 4rem;
+    max-height: 4rem;
+    /* background: var(--primary); */
+    /* color: var(--bg-primary); */
     border-radius: 0.5rem;
     display: flex;
     align-items: center;
@@ -370,8 +372,8 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 1px 1px, rgba(191, 152, 58, 0.1) 1px, transparent 0);
-    background-size: 20px 20px;
+    /* background: radial-gradient(circle at 1px 1px, rgba(191, 152, 58, 0.1) 1px, transparent 0); */
+    /* background-size: 20px 20px; */
     opacity: 0.3;
 }
 
@@ -388,18 +390,17 @@ p {
 }
 
 .logo-large {
-    width: auto;
+    width: 90%;
     height: auto;
-    background: var(--primary);
+    /* background: var(--primary); */
     color: var(--bg-primary);
-    border-radius: 1rem;
+    /* border-radius: 1rem; */
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 400;
     font-size: 3rem;
-    margin: 0 auto 1.5rem;
-    box-shadow: 0 20px 40px var(--shadow);
+    margin: -10rem auto 1.5rem;
 }
 
 .hero-title {
@@ -416,7 +417,7 @@ p {
     font-size: 1.25rem;
     color: var(--text-secondary);
     margin-bottom: 1.5rem;
-    max-width: 2rem;
+    max-width: auto;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1093,6 +1094,7 @@ section {
     flex-direction: column;
     gap: 1rem;
     margin-top: 2rem;
+    margin-left: 45%;
 }
 
 @media (min-width: 640px) {
@@ -1101,13 +1103,18 @@ section {
         flex-wrap: wrap;
     }
 }
-
+.contact-number
+{
+    width: 50%;
+}
 .contact-form {
     background: var(--bg-secondary);
     backdrop-filter: blur(10px);
     border: 1px solid var(--border);
     border-radius: 1rem;
     padding: 2rem;
+    width: 40rem;
+    margin-left: auto;
 }
 
 .contact-form h3 {

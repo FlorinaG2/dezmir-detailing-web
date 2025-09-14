@@ -52,7 +52,7 @@
                 <div class="logo">
                     <a href="#home">
                         <div class="logo-icon">
-                            <img src="images/Logo.jpeg" class="logo-icon" style="width: 15px; height: 20px" />
+                            <img src="images/Logo.jpeg" class="logo-icon"/>
                         </div>
                     </a>
                 </div>
@@ -61,7 +61,9 @@
                 <nav class="nav-desktop">
                     <a href="#home" class="nav-link" data-section="home">Acasă</a>
                     <a href="#gallery" class="nav-link" data-section="gallery">Galerie Foto</a>
+                    <a href="#programare" class="nav-link" data-section="ptogramare">Programare</a>
                     <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+                    <a href="#locatie" class="nav-link" data-section="locatie">Locație</a>
                 </nav>
 
                 <!-- Desktop Actions -->
@@ -205,22 +207,22 @@
                 <div class="process-step">
                     <div class="step-number">1</div>
                     <div class="step-content">
-                        <h2 data-translate="process.step1.title">Inspecție</h2>
+                        <h2 data-translate="process.step1.title">Constatare</h2>
                         <p data-translate="process.step1.description">Evaluare detaliată a stării vehiculului</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
                     <div class="step-content">
-                        <h2 data-translate="process.step2.title">Spălare & Decontaminare</h2>
+                        <h2 data-translate="process.step2.title">Exterior</h2>
                         <p data-translate="process.step2.description">Curățare completă</p>
                     </div>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
                     <div class="step-content">
-                        <h2 data-translate="process.step3.title">Interior</h2>
-                        <p data-translate="process.step3.description">Curățare și recondiționare interior</p>
+                        <h2 data-translate="process.step3.title">Interior & Decontaminare</h2>
+                        <p data-translate="process.step3.description">Curățare, recondiționare și decontaminare interior</p>
                     </div>
                 </div>
             </div>
@@ -234,22 +236,22 @@
             <div class="packages-grid">
                 <div class="package-card">
                     <h3 data-translate="packages.essential.title">Esențial</h3>
-                    <div class="package-price" data-translate="packages.essential.price">De la 250 RON</div>
+                    <div class="package-price" data-translate="packages.essential.price">De la 149 RON(TVA inclus)</div>
                     <ul class="package-features">
                         <li data-translate="packages.essential.features.0">Spălare exterior completă</li>
-                        <li data-translate="packages.essential.features.1">Curățare interior de bază</li>
-                        <li data-translate="packages.essential.features.2">Aspirare și ștergere</li>
+                        <li data-translate="packages.essential.features.1">Aspirare completă interior și portbagaj</li>
+                        <li data-translate="packages.essential.features.2">Curățare plastic și tratament</li>
                     </ul>
                     <button class="btn btn-secondary" onclick="scrollToContact()" data-translate="packages.essential.button">Cere ofertă</button>
                 </div>
                 <div class="package-card popular">
                     <div class="popular-badge" data-translate="packages.popular">Popular</div>
                     <h3 data-translate="packages.premium.title">Premium</h3>
-                    <div class="package-price" data-translate="packages.premium.price">De la 350 RON</div>
+                    <div class="package-price" data-translate="packages.premium.price">De la 449 RON (TVA inclus)</div>
                     <ul class="package-features">
                         <li data-translate="packages.premium.features.0">Toate serviciile Esențial</li>
-                        <li data-translate="packages.premium.features.1">Detailing interior complet</li>
-                        <li data-translate="packages.premium.features.2"></li>
+                        <li data-translate="packages.premium.features.1">Curățare tapițerie (aspirator cu injecție)</li>
+                        <li data-translate="packages.premium.features.2">Curățare piele și tratament</li>
                     </ul>
                     <button class="btn btn-primary" onclick="scrollToContact()" data-translate="packages.premium.button">Cere ofertă</button>
                 </div>
@@ -339,9 +341,27 @@
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                             </svg>
                         </div>
-                        <div>
+                        <div class="contact-number">
                             <p data-translate="contact.phoneLabel">Telefon</p>
                             <a href="tel:+40742044770" class="contact-link">+40 742 044 770</a>
+                        </div>
+                        <div class="contact-form" id="programare">
+                            <h3 data-translate="contact.formTitle">Trimite-ne un mesaj</h3>
+                            <form id="contact-form">
+                                <div class="form-group">
+                                    <label for="name" data-translate="contact.form.name">Nume</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone" data-translate="contact.form.phone">Telefon</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message" data-translate="contact.form.message">Mesaj</label>
+                                    <textarea id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary" data-translate="contact.form.submit">Trimite mesajul</button>
+                            </form>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -352,8 +372,18 @@
                             </svg>
                         </div>
                         <div>
+                            <section id="locatie">
                             <p data-translate="contact.locationLabel">Locație</p>
                             <p data-translate="contact.location">Cluj • Dezmir</p>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2733.0375415396115!2d23.715170576180554!3d46.76415647112502!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47497353bbdfb781%3A0x196fa9717b086f5!2s%C5%9Ecoala%20General%C4%83%20Dezmir!5e0!3m2!1sro!2sro!4v1757854579367!5m2!1sro!2sro" 
+                                    width="800"
+                                    height="450" 
+                                    style="border:0;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    ></iframe>
+                            </section>
                         </div>
                     </div>
                     <div class="contact-actions">
@@ -377,24 +407,6 @@
                             <span data-translate="contact.email">Email</span>
                         </a>-->
                     </div>
-                </div>
-                <div class="contact-form">
-                    <h3 data-translate="contact.formTitle">Trimite-ne un mesaj</h3>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name" data-translate="contact.form.name">Nume</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" data-translate="contact.form.phone">Telefon</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" data-translate="contact.form.message">Mesaj</label>
-                            <textarea id="message" name="message" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" data-translate="contact.form.submit">Trimite mesajul</button>
-                    </form>
                 </div>
             </div>
         </div>
