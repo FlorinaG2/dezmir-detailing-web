@@ -1,1 +1,4 @@
 "README.private.md" 
+.vs/
+*.sqlite
+README.private.md
