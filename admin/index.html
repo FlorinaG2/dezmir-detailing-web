@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Dezmir Detailing</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .admin-container {
+            min-height: 100vh;
+            background: var(--bg-primary);
+            padding: 2rem 0;
+        }
+        .admin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .admin-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .admin-subtitle {
+            color: var(--text-secondary);
+        }
+        .admin-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(191, 152, 58, 0.05);
+        }
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: rgba(191, 152, 58, 0.1);
+        }
+        .upload-icon {
+            width: 4rem;
+            height: 4rem;
+            background: rgba(191, 152, 58, 0.1);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--primary);
+        }
+        .file-input {
+            display: none;
+        }
+        .file-list {
+            margin-top: 2rem;
+        }
+        .file-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .file-preview {
+            width: 4rem;
+            height: 4rem;
+            background: var(--bg-primary);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .file-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .file-info {
+            flex: 1;
+        }
+        .file-name {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        .file-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            color: var(--text-primary);
+            font-size: 1rem;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(191, 152, 58, 0.1);
+        }
+        .upload-btn {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        .status-message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        .status-message.success {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .logout-btn {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .logout-btn:hover {
+            background: var(--primary);
+            color: var(--bg-primary);
+            border-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1 class="admin-title">Admin Panel</h1>
+                <p class="admin-subtitle">Gestionare galerie foto</p>
+            </div>
+
+            <div class="status-message" id="status-message"></div>
+
+            <div class="upload-area" id="upload-area">
+                <div class="upload-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17,8 12,3 7,8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                </div>
+                <h3>Selectează imagini pentru galerie</h3>
+                <p>Glisează imagini aici sau click pentru a selecta</p>
+                <input type="file" id="file-input" class="file-input" multiple accept="image/*">
+                <button class="btn btn-primary" onclick="document.getElementById('file-input').click()">
+                    Alege fișiere
+                </button>
+            </div>
+
+            <div class="file-list" id="file-list"></div>
+
+            <div class="upload-controls" id="upload-controls" style="display: none;">
+                <button class="btn btn-primary upload-btn" onclick="uploadFiles()">
+                    Încarcă imagini
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedFiles = [];
+
+        // Check authentication
+        if (!localStorage.getItem('adminAuth')) {
+            window.location.href = 'login.html';
+        }
+
+        // File input handling
+        document.getElementById('file-input').addEventListener('change', handleFileSelect);
+        
+        // Drag and drop
+        const uploadArea = document.getElementById('upload-area');
+        
+        uploadArea.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', function(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        });
+
+        function handleFileSelect(e) {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        }
+
+        function handleFiles(files) {
+            const imageFiles = files.filter(file => file.type.startsWith('image/'));
+            selectedFiles = [...selectedFiles, ...imageFiles];
+            renderFileList();
+        }
+
+        function renderFileList() {
+            const fileList = document.getElementById('file-list');
+            const uploadControls = document.getElementById('upload-controls');
+            
+            if (selectedFiles.length === 0) {
+                fileList.innerHTML = '';
+                uploadControls.style.display = 'none';
+                return;
+            }
+
+            fileList.innerHTML = selectedFiles.map((file, index) => `
+                <div class="file-item">
+                    <div class="file-preview">
+                        <img src="${URL.createObjectURL(file)}" alt="Preview">
+                    </div>
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-controls">
+                            <select onchange="updateFileTag(${index}, this.value)">
+                                <option value="before">Înainte</option>
+                                <option value="after">După</option>
+                            </select>
+                            <input type="text" placeholder="Descriere (opțional)" onchange="updateFileCaption(${index}, this.value)">
+                            <button class="btn btn-secondary" onclick="removeFile(${index})">Șterge</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            uploadControls.style.display = 'block';
+        }
+
+        function updateFileTag(index, tag) {
+            selectedFiles[index].tag = tag;
+        }
+
+        function updateFileCaption(index, caption) {
+            selectedFiles[index].caption = caption;
+        }
+
+        function removeFile(index) {
+            selectedFiles.splice(index, 1);
+            renderFileList();
+        }
+
+        function uploadFiles() {
+            if (selectedFiles.length === 0) return;
+
+            const uploadBtn = document.querySelector('.upload-btn');
+            const originalText = uploadBtn.textContent;
+            
+            uploadBtn.textContent = 'Se încarcă...';
+            uploadBtn.disabled = true;
+
+            // Simulate upload
+            setTimeout(() => {
+                showStatus('Imaginile au fost încărcate cu succes!', 'success');
+                selectedFiles = [];
+                renderFileList();
+                uploadBtn.textContent = originalText;
+                uploadBtn.disabled = false;
+            }, 2000);
+        }
+
+        function showStatus(message, type) {
+            const statusMessage = document.getElementById('status-message');
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.style.display = 'block';
+            
+            setTimeout(() => {
+                statusMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function logout() {
+            localStorage.removeItem('adminAuth');
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>
