@@ -39,17 +39,23 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+
+    /* Respect iPhone safe area on the sides */
+  padding-left: calc(16px + env(safe-area-inset-left));
+  padding-right: calc(16px + env(safe-area-inset-right));
 }
 
 @media (min-width: 640px) {
     .container {
-        padding: 0 1.5rem;
+        padding-left: calc(24px + env(safe-area-inset-left));
+        padding-right: calc(24px + env(safe-area-inset-right));
     }
 }
 
 @media (min-width: 1024px) {
     .container {
-        padding: 0 2rem;
+        padding-left: calc(32px + env(safe-area-inset-left));
+        padding-right: calc(32px + env(safe-area-inset-right));
     }
 }
 
@@ -155,6 +161,8 @@ p {
     z-index: 1000;
     transition: all 0.3s ease;
     background: transparent;
+    padding-left: calc(env(safe-area-inset-left));
+    padding-right: calc(env(safe-area-inset-right));
 }
 
 .header.scrolled {
@@ -560,7 +568,8 @@ section {
     text-align: center;
     transition: all 0.3s ease;
     height: 250%;
-    width: 400px;
+    /* width: 400px; */
+    width: min(100%, 360px);
     margin-inline: auto;
 }
 
@@ -711,6 +720,7 @@ section {
     transition: all 0.3s ease;
     height: 100%;
     margin-inline: auto;
+    width: min(100%, 360px);
 }
 
 .package-card:hover {
@@ -942,8 +952,11 @@ section {
     border-radius: 0.5rem;
     padding: 0.25rem;
     display: inline-flex;
-    margin-left: 50%;
-    transform: translateX(-50%);
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+    margin-left: 0;
+    transform: none;
+    justify-content: center; 
 }
 
 .filter-btn {
@@ -1094,7 +1107,9 @@ section {
     flex-direction: column;
     gap: 1rem;
     margin-top: 2rem;
-    margin-left: 45%;
+    margin-left: 0;
+    align-items: center;
+   justify-content: center;
 }
 
 @media (min-width: 640px) {
@@ -1113,8 +1128,10 @@ section {
     border: 1px solid var(--border);
     border-radius: 1rem;
     padding: 2rem;
-    width: 40rem;
-    margin-left: auto;
+    /* width: 40rem; */
+    width: 100%;
+    max-width: 40rem;
+    margin: 0 auto;   
 }
 
 .contact-form h3 {
@@ -1161,7 +1178,9 @@ section {
     background: var(--bg-tertiary);
     backdrop-filter: blur(10px);
     border-top: 1px solid var(--border);
-    padding: 2rem 0;
+    /* padding: 2rem 0; */
+    padding-left: calc(env(safe-area-inset-left));
+    padding-right: calc(env(safe-area-inset-right));
 }
 
 .footer-content {
