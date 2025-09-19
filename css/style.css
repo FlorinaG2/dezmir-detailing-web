@@ -391,12 +391,10 @@ p {
 }
 
 .hero-logo {
-    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .logo-large {
-    width: auto;
-    height: auto;
     /* background: var(--primary); */
     color: var(--bg-primary);
     /* border-radius: 1rem; */
@@ -405,10 +403,55 @@ p {
     justify-content: center;
     font-weight: 400;
     font-size: 3rem;
-    margin: auto;
-    max-width: 90vw;
+    margin: 2rem auto 1.5rem;
+    max-width: 100%;
 }
 
+    @media (max-width: 640px) {
+        .logo-large {                         /* kill the negative margin on small screens */
+          margin: 1.5rem auto;
+        }
+      }
+      /* 2) make the logo image/SVG fully responsive and not cropped */
+.logo-large img,
+.logo-large svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;                         /* keep aspect ratio */
+  width: clamp(200px, 70vw, 520px);     /* scales on small screens, capped on large */
+}
+
+/* 3) if you used the logo as a *background-image* anywhere, stop it from cropping */
+.hero-logo,
+.logo-large {
+  background-position: center;
+  background-repeat: no-repeat;
+  /* If you are using a background logo, use contain (no crop) */
+  background-size: contain;             /* NOT cover for logos with text */
+}
+
+/* 4) avoid tiny horizontal shifts on iOS */
+.container, .hero, .logo-large {
+  box-sizing: border-box;
+}
+
+@supports (padding: max(0px)) {
+  .container, .hero {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
+/* 5) prevent accidental cropping by a parent */
+.hero, .hero-logo, .logo-large {
+  overflow: visible;                     /* make sure nothing clips the logo */
+}
+
+/* 6) common iOS fix: avoid 100vw containers that push content sideways */
+.wrapper, .hero {
+  width: 100%;                           /* prefer 100% over 100vw */
+}
 .hero-title {
     font-size: 3rem;
     font-weight: 700;
