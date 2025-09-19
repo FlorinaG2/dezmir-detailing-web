@@ -352,55 +352,35 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
   
-    // Optional inline status area (add a <p id="form-status"></p> under the button if you want)
     const status = document.getElementById('form-status');
   
-    form.addEventListener('submit', async (e) => {
-      // Progressive enhancement: if fetch isn't available, allow normal POST
-      if (!window.fetch) return;
-  
-      e.preventDefault();
-  
+    form.addEventListener('submit', function(e) {
       const submitBtn = form.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
   
-      submitBtn.textContent = 'Se trimite... / Sending...';
+      // Show loading state
+      submitBtn.textContent = 'Se trimite...';
       submitBtn.disabled = true;
+      status.textContent = '';
+      status.style.color = '';
   
-      try {
-        const res = await fetch(form.action || 'https://formspree.io/f/YOUR_ID', {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' } // prevents redirect; returns JSON
-        });
+      // Get form data for validation
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
   
-        if (res.ok) {
-          form.reset();
-          if (status) {
-            status.textContent = 'Mesaj trimis cu succes! / Message sent successfully!';
-            status.style.color = 'green';
-          } else {
-            alert('Mesaj trimis cu succes! / Message sent successfully!');
-          }
-        } else {
-          // Try to read Formspree error body
-          let errText = 'Eroare la trimitere. Verifică ID-ul formularului.';
-          try {
-            const data = await res.json();
-            if (data && data.errors && data.errors.length) {
-              errText = data.errors.map(e => e.message).join(', ');
-            }
-          } catch {}
-          if (status) { status.textContent = errText; status.style.color = 'crimson'; }
-          else { alert(errText); }
-        }
-      } catch (err) {
-        if (status) { status.textContent = 'Nu pot contacta serverul. Verifică conexiunea.'; status.style.color = 'crimson'; }
-        else { alert('Nu pot contacta serverul. Verifică conexiunea.'); }
-      } finally {
+      // Basic validation
+      if (!data.name || !data.phone || !data.message) {
+        e.preventDefault();
+        status.textContent = 'Vă rugăm să completați toate câmpurile obligatorii.';
+        status.style.color = 'crimson';
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
+        return;
       }
+  
+      // If validation passes, let the form submit naturally
+      // The form will redirect to contact-success.html
+      // No need to prevent default or handle the submission manually
     });
   }
   
