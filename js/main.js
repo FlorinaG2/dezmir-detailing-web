@@ -351,34 +351,70 @@ function updateLightboxImage(image) {
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(form);
-        const data = {
-            name: formData.get('name'),
-            phone: formData.get('phone'),
-            message: formData.get('message')
-        };
-
-        // Simulate form submission
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.textContent = 'Se trimite... / Sending...';
-        submitBtn.disabled = true;
-
-        // Simulate API call
-        setTimeout(() => {
-            console.log('Form submitted:', data);
-            alert('Mesajul a fost trimis cu succes! / Message sent successfully!');
-            form.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 1000);
+  
+    // Optional inline status area (add a <p id="form-status"></p> under the button if you want)
+    const status = document.getElementById('form-status');
+  
+    form.addEventListener('submit', async (e) => {
+      // Progressive enhancement: if fetch isn't available, allow normal POST
+      if (!window.fetch) return;
+  
+      e.preventDefault();
+  
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+  
+      submitBtn.textContent = 'Se trimite... / Sending...';
+      submitBtn.disabled = true;
+  
+      try {
+        const res = await fetch(form.action || 'https://formspree.io/f/YOUR_ID', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' } // prevents redirect; returns JSON
+        });
+  
+        if (res.ok) {
+          form.reset();
+          if (status) {
+            status.textContent = 'Mesaj trimis cu succes! / Message sent successfully!';
+            status.style.color = 'green';
+          } else {
+            alert('Mesaj trimis cu succes! / Message sent successfully!');
+          }
+        } else {
+          // Try to read Formspree error body
+          let errText = 'Eroare la trimitere. Verifică ID-ul formularului.';
+          try {
+            const data = await res.json();
+            if (data && data.errors && data.errors.length) {
+              errText = data.errors.map(e => e.message).join(', ');
+            }
+          } catch {}
+          if (status) { status.textContent = errText; status.style.color = 'crimson'; }
+          else { alert(errText); }
+        }
+      } catch (err) {
+        if (status) { status.textContent = 'Nu pot contacta serverul. Verifică conexiunea.'; status.style.color = 'crimson'; }
+        else { alert('Nu pot contacta serverul. Verifică conexiunea.'); }
+      } finally {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
     });
-}
+  }
+  
+
+//         // Simulate API call
+//         setTimeout(() => {
+//             console.log('Form submitted:', data);
+//             alert('Mesajul a fost trimis cu succes! / Message sent successfully!');
+//             form.reset();
+//             submitBtn.textContent = originalText;
+//             submitBtn.disabled = false;
+//         }, 1000);
+//     });
+// }
 
 // Animations
 function initAnimations() {

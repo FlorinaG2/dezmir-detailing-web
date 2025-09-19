@@ -395,7 +395,7 @@ p {
 }
 
 .logo-large {
-    width: 90%;
+    width: auto;
     height: auto;
     /* background: var(--primary); */
     color: var(--bg-primary);
@@ -405,7 +405,8 @@ p {
     justify-content: center;
     font-weight: 400;
     font-size: 3rem;
-    margin: -10rem auto 1.5rem;
+    margin: auto;
+    max-width: 90vw;
 }
 
 .hero-title {
@@ -433,14 +434,14 @@ p {
     margin-bottom: 3rem;
 }
 
-.map-wrap iframe{
+/* .map-wrap iframe{
     width: auto;
     aspect-ratio: 16 / 9;
     height: auto;
     border: 0;
     display: grid;
     margin-left: -70px;
-}
+} */
 .hero-actions {
     display: flex;
     flex-direction: column;
