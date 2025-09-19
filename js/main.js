@@ -391,10 +391,10 @@ Mesaj:
 ${data.message}
 
 ---
-Acest mesaj a fost trimis de pe website-ul dezmir-detailing.com`;
+Acest mesaj a fost trimis de pe website-ul dezmirdetailing.com`;
 
       // Create mailto link
-      const mailtoLink = `mailto:contact@dezmir-detailing.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailtoLink = `mailto:contact@dezmirdetailing.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       
       // Simulate sending
       setTimeout(() => {
