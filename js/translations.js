@@ -149,13 +149,13 @@ const translations = {
 const galleryData = [
     {
         id: 1,
-        src: 'images/Jetta_before.jpeg',
+        src: 'images/Jetta_Before.jpeg',
         tag: 'before',
         caption: 'Before detailing'
     },
     {
         id: 2,
-        src: 'images/Jetta_after.jpeg',
+        src: 'images/Jetta_After.jpeg',
         tag: 'after',
         caption: 'After detailing'
     }
