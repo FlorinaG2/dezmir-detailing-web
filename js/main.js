@@ -113,14 +113,36 @@ function setLanguage(lang) {
     // Update active language button
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.getAttribute('data-lang') === lang) {
-            btn.classList.add('active');
-        }
+        if (btn.getAttribute('data-lang') === lang);
     });
 
     // Update page language
     document.documentElement.lang = lang;
-}
+    const iframe = document.getElementById('gmap');
+    if (iframe) {
+      try {
+        const url = new URL(iframe.src);
+        // Force UI language
+        url.searchParams.set('hl', lang === 'ro' ? 'ro' : 'en');
+  
+        // Optional: also normalize the pb locale tokens if present
+        let pb = url.searchParams.get('pb') || '';
+        pb = pb
+          .replace(/!1sro!2sro/gi, '!1sen!2sxx')   // ro -> en
+          .replace(/!1sen!2sxx/gi, lang === 'ro' ? '!1sro!2sro' : '!1sen!2sxx'); // switch back if needed
+        if (pb) url.searchParams.set('pb', pb);
+  
+        iframe.src = url.toString();
+      } catch (e) {
+        // If URL API fails (older browsers), fall back to string replace:
+        const hlParam = `hl=${lang === 'ro' ? 'ro' : 'en'}`;
+        let src = iframe.src.replace(/([?&])hl=\w+/,'$1' + hlParam);
+        if (!/[?&]hl=/.test(src)) src += (src.includes('?') ? '&' : '?') + hlParam;
+        src = src.replace(/!1sro!2sro/gi, lang === 'ro' ? '!1sro!2sro' : '!1sen!2sxx');
+        iframe.src = src;
+      }
+    }
+  }
 
 function saveLanguagePreference(lang) {
     localStorage.setItem('language', lang);

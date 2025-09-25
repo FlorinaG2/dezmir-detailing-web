@@ -1,6 +1,12 @@
 // Translation data
 const translations = {
     ro: {
+        "nav.home": "Acasă",
+        "nav.gallery": "Galerie Foto",
+        "nav.appointment": "Programare",
+        "nav.contact": "Contact",
+        "nav.location": "Locație",
+        "testimonials.title": "Ce spun clienții",
         "hero.tagline": "Îngrijire auto de precizie",
         "hero.location": "Cluj • Dezmir",
         "hero.callNow": "Sună acum",
@@ -58,6 +64,12 @@ const translations = {
         "footer.rights": "© 2024 Dezmir Detailing. Toate drepturile rezervate."
     },
     en: {
+        "nav.home": "Home",
+        "nav.gallery": "Photo Gallery",
+        "nav.appointment": "Schedule an appointment",
+        "nav.contact": "Contact",
+        "nav.location": "Location",
+        "testimonials.title": "What Clients Say",
         "hero.tagline": "Precision car care",
         "hero.location": "Cluj • Dezmir",
         "hero.callNow": "Call now",
