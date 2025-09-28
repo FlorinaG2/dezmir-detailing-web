@@ -142,5 +142,67 @@ const galleryData = [
         src: 'images/Jetta_After.jpeg',
         tag: 'after',
         caption: 'After detailing'
-    }
+    },
+// BMW
+{
+    id: 3,
+    src: 'images/BMW_Before.jpeg',
+    tag: 'before',
+    caption: 'Before detailing'
+},
+{
+    id: 4,
+    src: 'images/BMW_After.jpeg',
+    tag: 'after',
+    caption: 'After detailing'
+},
+{
+    id: 5,
+    src: 'images/BMW_Trunk_Before.jpeg',
+    tag: 'before',
+    caption: 'Before detailing'
+},
+{
+    id: 6,
+    src: 'images/BMW_Trunk_After.jpeg',
+    tag: 'after',
+    caption: 'After detailing'
+},
+//Mercedes
+{
+    id: 7,
+    src: 'images/Front_Mercedes_Before.jpeg',
+    tag: 'before',
+    caption: 'Before detailing'
+},
+{
+    id: 8,
+    src: 'images/Front_Mercedes_After.jpeg',
+    tag: 'after',
+    caption: 'After detailing'
+},
+{
+    id: 9,
+    src: 'images/Back_Mercedes_Before.jpeg',
+    tag: 'before',
+    caption: 'Before detailing'
+},
+{
+    id: 10,
+    src: 'images/Back_Mercedes_After.jpeg',
+    tag: 'after',
+    caption: 'After detailing'
+},
+{
+    id: 11,
+    src: 'images/Trunk_Mercedes_Before.jpeg',
+    tag: 'before',
+    caption: 'Before detailing'
+},
+{
+    id: 12,
+    src: 'images/Trunk_Mercedes_After.jpeg',
+    tag: 'after',
+    caption: 'After detailing'
+},
 ];
