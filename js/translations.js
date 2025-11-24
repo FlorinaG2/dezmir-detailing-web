@@ -27,16 +27,22 @@ const translations = {
         "packages.title": "Pachete",
         "packages.popular": "Popular",
         "packages.essential.title": "Esențial",
-        "packages.essential.price": "De la 179 RON (TVA inclus)",
-        "packages.essential.features.0": "Spălare exterior completă",
-        "packages.essential.features.2": "Aspirare completă interior și portbagaj",
-        "packages.essential.features.1": "Curățare plastic și tratament",
+        "packages.essential.price": "De la 199,99 RON",
+        "packages.essential.features.0": "Aspirare completă interior (scaune, covorașe, mochete)",
+        "packages.essential.features.1": "Aspirare portbagaj",
+        "packages.essential.features.2": "Curățare plastic interior (bord, consolă centrală, fețe de uși)",
+        "packages.essential.features.3": "Tratament / dressing pentru plastic",
         "packages.essential.button": "Cere ofertă",
+        "packages.confort.title": "Confort",
+        "packages.confort.price": "De la 279,99 RON",
+        "packages.confort.features.0": "Toate serviciile Esențial",
+        "packages.confort.features.1": "Curățare în profunzime a suprafețelor de șezut, în funcție de material: Curățare tapițerie textilă (aspirator cu injecție-extracție) / Curățare piele + tratament de protecție",
         "packages.premium.title": "Premium",
-        "packages.premium.price": "De la 449 RON (TVA inclus)",
-        "packages.premium.features.0": "Toate serviciile Esențial",
-        "packages.premium.features.1": "Curățare tapițerie (aspirator cu injecție)",
-        "packages.premium.features.2": "Curățare piele și tratament",
+        "packages.premium.price": "De la 479,99 RON",
+        "packages.premium.features.0": "Toate serviciile Confort",
+        "packages.premium.features.1": "Spălare exterior completă",
+        "packages.premium.features.2": "Curățare tapițerie și mochetă (aspirator cu injecție-extracție – scaune, banchetă, mochete)",
+        "packages.premium.features.3": "Curățare piele și tratament",
         "packages.premium.button": "Cere ofertă",
         "beforeAfter.title": "Înainte & După",
         "beforeAfter.subtitle": "Rezultatele vorbesc de la sine",
@@ -91,16 +97,22 @@ const translations = {
         "packages.title": "Packages",
         "packages.popular": "Popular",
         "packages.essential.title": "Essential",
-        "packages.essential.price": "From 179 RON (VAT included)",
-        "packages.essential.features.0": "Full exterior wash",
-        "packages.essential.features.1": "Complete interior and trunk vacuum",
-        "packages.essential.features.2": "Plastic cleaning and treatment",
+        "packages.essential.price": "From 199,99 RON",
+        "packages.essential.features.0": "Full interior vacuuming (seats, mats, carpets)",
+        "packages.essential.features.1": "Trunk vacuuming",
+        "packages.essential.features.2": "Interior plastic cleaning (dashboard, center console, door panels)",
+        "packages.essential.features.3": "Plastic treatment / dressing",
         "packages.essential.button": "Get a quote",
+        "packages.confort.title": "Confort",
+        "packages.confort.price": "From 279,99 RON",
+        "packages.confort.features.0": "All Essential services",
+        "packages.confort.features.1": "Deep cleaning of seating surfaces, depending on the material: fabric upholstery cleaning with injection–extraction vacuum, or leather cleaning plus protective treatment",
         "packages.premium.title": "Premium",
-        "packages.premium.price": "From 449 RON (VAT included)",
-        "packages.premium.features.0": "All Essential services",
-        "packages.premium.features.1": "Upholstery cleaning (injection–extraction vacuum)",
-        "packages.premium.features.2": "Leather cleaning and treatment",
+        "packages.premium.price": "From 479,99 RON",
+        "packages.premium.features.0": "All Comfort services",
+        "packages.premium.features.1": "Full exterior wash",
+        "packages.premium.features.2": "Upholstery and carpet cleaning (injection–extraction vacuum – seats, rear bench, carpets)",
+        "packages.premium.features.3": "Leather cleaning and treatment",
         "packages.premium.button": "Get a quote",
         "beforeAfter.title": "Before & After",
         "beforeAfter.subtitle": "Results speak for themselves",
@@ -133,76 +145,59 @@ const translations = {
 const galleryData = [
     {
         id: 1,
-        src: 'images/Jetta_Before.jpeg',
+        src: 'images/Image1_Before.jpeg',
         tag: 'before',
         caption: 'Before detailing'
     },
     {
         id: 2,
-        src: 'images/Jetta_After.jpeg',
+        src: 'images/Image1_After.jpeg',
         tag: 'after',
         caption: 'After detailing'
     },
 // BMW
 {
     id: 3,
-    src: 'images/BMW_Before.jpeg',
+    src: 'images/Image2_Before.jpeg',
     tag: 'before',
     caption: 'Before detailing'
 },
 {
     id: 4,
-    src: 'images/BMW_After.jpeg',
+    src: 'images/Image2_After.jpeg',
     tag: 'after',
     caption: 'After detailing'
 },
 {
     id: 5,
-    src: 'images/BMW_Trunk_Before.jpeg',
+    src: 'images/Image3_Before.jpeg',
     tag: 'before',
     caption: 'Before detailing'
 },
 {
     id: 6,
-    src: 'images/BMW_Trunk_After.jpeg',
+    src: 'images/Image3_After.jpeg',
     tag: 'after',
     caption: 'After detailing'
 },
 //Mercedes
 {
     id: 7,
-    src: 'images/Front_Mercedes_Before.jpeg',
+    src: 'images/Image4_Before.jpeg',
     tag: 'before',
     caption: 'Before detailing'
 },
 {
     id: 8,
-    src: 'images/Front_Mercedes_After.jpeg',
+    src: 'images/Image4_After.jpeg',
     tag: 'after',
     caption: 'After detailing'
 },
 {
     id: 9,
-    src: 'images/Back_Mercedes_Before.jpeg',
+    src: 'images/Image5.jpeg',
     tag: 'before',
     caption: 'Before detailing'
 },
-{
-    id: 10,
-    src: 'images/Back_Mercedes_After.jpeg',
-    tag: 'after',
-    caption: 'After detailing'
-},
-{
-    id: 11,
-    src: 'images/Trunk_Mercedes_Before.jpeg',
-    tag: 'before',
-    caption: 'Before detailing'
-},
-{
-    id: 12,
-    src: 'images/Trunk_Mercedes_After.jpeg',
-    tag: 'after',
-    caption: 'After detailing'
-},
+
 ];
